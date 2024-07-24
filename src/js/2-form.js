@@ -1,5 +1,5 @@
 const feedbackForm = document.querySelector('.feedback-form');
-const data = {};
+let data = {};
 
 const fillFormFields = form => {
   const formDataFromLS = JSON.parse(
@@ -32,7 +32,7 @@ const onFormFieldChange = event => {
 const onFeedbackFormSubmit = event => {
   event.preventDefault();
   if (Object.keys(data).length !== 2) {
-    alert('Fill all field');
+    alert('Fill please all fields');
 
     return;
   }
@@ -40,7 +40,8 @@ const onFeedbackFormSubmit = event => {
   console.log(data);
   event.target.reset();
   localStorage.removeItem('feedback-form-state');
+  data = {}
 };
 
-feedbackForm.addEventListener('change', onFormFieldChange);
+feedbackForm.addEventListener('input', onFormFieldChange);
 feedbackForm.addEventListener('submit', onFeedbackFormSubmit);
